@@ -1,0 +1,13 @@
+package org.example;
+
+public class SimpleBox <T>{
+    private T content;
+
+    public T getContent() {
+        return content;
+    }
+
+    public void setContent(T content) {
+        this.content = content;
+    }
+}

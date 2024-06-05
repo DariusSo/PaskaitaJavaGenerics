@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class ExercisesGenericMethods <T>{
     public static Random r = new Random();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ExercisesGenericMethods<Integer> emInt = new ExercisesGenericMethods();
         ExercisesGenericMethods<String> emString = new ExercisesGenericMethods();
         ExercisesGenericMethods<Character> emChar = new ExercisesGenericMethods<>();
@@ -21,7 +21,20 @@ public class ExercisesGenericMethods <T>{
         emChar.printArray(null);
         emString.printArray(new String[0]);
         //2.2 Uzduotis: arrayToList
-        emChar.printList(emChar.arrayToList(randomCharArray()));
+        Character[] charReference = null;
+        Character[] charList = randomCharArray();
+        emChar.printList(emChar.arrayToList(charList));
+        emChar.printList(emChar.arrayToList(new Character[0]));
+        emChar.printList(emChar.arrayToList(charReference));
+        //2.3 Uzduotis: swap indexes
+        emChar.swap(charList, 0, 1);
+        emChar.printArray(charList);
+        //emChar.swap(charList, 0, charList.length);
+        //emChar.swap(new Character[0], 0, 1);
+        //emChar.swap(charReference, 0, 1);
+
+
+
 
 
     }
@@ -72,8 +85,21 @@ public class ExercisesGenericMethods <T>{
             }else{
                 System.out.print(e + ", ");
             }
-            System.out.println("]");
+        }
+        System.out.println("]");
+    }
+    public void swap(T[] array, int indexFirst, int indexSecond) throws Exception {
+        if(array == null){
+            throw new NullPointerException();
+        }
+        try{
+            T temp = array[indexFirst];
+            array[indexFirst] = array[indexSecond];
+            array[indexSecond] = temp;
+        }catch (ArrayIndexOutOfBoundsException e){
+            throw new Exception("Please check an instance of array or indices");
         }
     }
+
 
 }
